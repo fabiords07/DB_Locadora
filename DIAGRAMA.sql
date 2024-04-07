@@ -1,11 +1,11 @@
 CREATE DATABASE locadora;
 USE locadora;
 ALTER DATABASE locadora CHARACTER SET utf8;
-DROP DATABASE locadora;
+
 SHOW TABLES;
 
 CREATE TABLE Veiculos (
-	Veiculo_ID INT AUTO_INCREMENT PRIMARY KEY
+    Veiculo_ID INT AUTO_INCREMENT PRIMARY KEY
 );
 
 CREATE TABLE Categoria_Veiculos (
@@ -54,7 +54,7 @@ CREATE TABLE Seguro (
 
 ALTER TABLE Veiculos
     ADD COLUMN Numero_Chassi VARCHAR(17) UNIQUE,
-	ADD COLUMN Modelo VARCHAR(100),
+    ADD COLUMN Modelo VARCHAR(100),
     ADD COLUMN Marca VARCHAR(50),
     ADD COLUMN Ano VARCHAR(4),
     ADD COLUMN Placa VARCHAR(7) UNIQUE,
@@ -76,7 +76,7 @@ ALTER TABLE Veiculos
     ADD FOREIGN KEY (Manutencao_ID) REFERENCES Manutencao(Manutencao_ID);
 
 ALTER TABLE Categoria_Veiculos
-	ADD COLUMN Nome_Categoria VARCHAR(50),
+    ADD COLUMN Nome_Categoria VARCHAR(50),
     ADD COLUMN Descricao VARCHAR(255),
     ADD COLUMN Tarifa_Diaria DECIMAL(10,2);
 
@@ -92,7 +92,7 @@ ALTER TABLE Manutencao
 
 ALTER TABLE Reserva
     ADD COLUMN Data_Reserva DATETIME,
-	ADD COLUMNData_Retirada_Prevista DATETIME,
+    ADD COLUMNData_Retirada_Prevista DATETIME,
     ADD COLUMN Disponibilidade_Reserva BOOLEAN,
     
     ADD COLUMN Veiculo_ID INT,
@@ -126,7 +126,7 @@ ALTER TABLE Funcionario
 ALTER TABLE Aluguel
     ADD COLUMN Data_Inicio DATETIME,
     ADD COLUMN Data_Termino_Prevista DATETIME,
-	ADD COLUMN Data_Termino_Real DATETIME,
+    ADD COLUMN Data_Termino_Real DATETIME,
     ADD COLUMN Valor DECIMAL (10,2);
 
 ALTER TABLE Agencia 
@@ -144,7 +144,7 @@ ALTER TABLE Agencia
     ADD FOREIGN KEY (Veiculo_ID) REFERENCES Veiculos(Veiculo_ID);
 
 ALTER TABLE Cliente
-	ADD COLUMN Nome VARCHAR(255),
+    ADD COLUMN Nome VARCHAR(255),
     ADD COLUMN Telefone VARCHAR(15),
     ADD COLUMN Email VARCHAR(255),
     ADD COLUMN CNH VARCHAR(255),
@@ -155,13 +155,13 @@ ALTER TABLE Cliente
     ADD COLUMN Veiculo_ID INT,	
     ADD COLUMN Reserva_ID INT,	
     
-	ADD FOREIGN KEY (Aluguel_ID) REFERENCES Aluguel(Aluguel_ID),
-	ADD FOREIGN KEY (Endereco_ID) REFERENCES Endereco(Endereco_ID),
+    ADD FOREIGN KEY (Aluguel_ID) REFERENCES Aluguel(Aluguel_ID),
+    ADD FOREIGN KEY (Endereco_ID) REFERENCES Endereco(Endereco_ID),
     ADD FOREIGN KEY (Veiculo_ID) REFERENCES Veiculos(Veiculo_ID),
     ADD FOREIGN KEY (Reserva_ID) REFERENCES Reserva(Reserva_ID);
 
 ALTER TABLE Endereco 
-	ADD COLUMN Rua VARCHAR(255),
+    ADD COLUMN Rua VARCHAR(255),
     ADD COLUMN Numero VARCHAR(255),
     ADD COLUMN Complemento VARCHAR(255),
     ADD COLUMN Bairro VARCHAR(255),
@@ -170,7 +170,7 @@ ALTER TABLE Endereco
     ADD COLUMN CEP VARCHAR(255);
 
 ALTER TABLE Multa 
-	ADD COLUMN Infracao VARCHAR(255),
+    ADD COLUMN Infracao VARCHAR(255),
     ADD COLUMN Data_Multa DATETIME,
     ADD COLUMN Valor_Multa DECIMAL(10,2),
     
@@ -178,15 +178,15 @@ ALTER TABLE Multa
     ADD COLUMN Veiculo_ID INT,
     ADD COLUMN Cliente_ID INT,
     
-	ADD FOREIGN KEY (Aluguel_ID) REFERENCES Aluguel(Aluguel_ID),
+    ADD FOREIGN KEY (Aluguel_ID) REFERENCES Aluguel(Aluguel_ID),
     ADD FOREIGN KEY (Veiculo_ID) REFERENCES Veiculos(Veiculo_ID),
     ADD FOREIGN KEY (Cliente_ID) REFERENCES Cliente(Cliente_ID);
 
 ALTER TABLE Seguro
-	ADD COLUMN Tipo_Seguro VARCHAR(255),
+    ADD COLUMN Tipo_Seguro VARCHAR(255),
     ADD COLUMN Valor_Premio VARCHAR(255),
     ADD COLUMN Periodo_Seguro DATETIME,
     
     ADD COLUMN Aluguel_ID INT,
     
-	ADD FOREIGN KEY (Aluguel_ID) REFERENCES Aluguel(Aluguel_ID);
+    ADD FOREIGN KEY (Aluguel_ID) REFERENCES Aluguel(Aluguel_ID);
